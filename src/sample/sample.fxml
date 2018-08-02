@@ -14,8 +14,15 @@
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
    <children>
-       <Button id="importpricesbutt" mnemonicParsing="false" onAction="#importNewPrices" text="Import New Prices" />
+       <Button id="importpricesbutt" mnemonicParsing="false" onAction="#importNewPrices" text="Import New Prices" GridPane.rowIndex="3" />
+      <Button id="pullFromDB" mnemonicParsing="false" onAction="#pullItemsFromDB" text="Pull Above Items From DB" GridPane.rowIndex="2" />
+      <TextArea id="prodcodeTestBox" prefHeight="93.0" prefWidth="200.0" promptText="Enter prodcodes seperated by commas" GridPane.rowIndex="1" />
+      <Label text="Label" />
    </children>
 </GridPane>
