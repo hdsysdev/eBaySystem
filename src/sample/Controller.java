@@ -3,10 +3,8 @@ package sample;
 import com.opencsv.CSVWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.sql.*;
 
@@ -42,7 +40,7 @@ public class Controller {
 
         }
 
-        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
+        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement()) {
             ResultSet rs = stmt.executeQuery(SQL);
 
             Date todayWithZeroTime = new java.sql.Date(System.currentTimeMillis());
@@ -51,6 +49,7 @@ public class Controller {
                 CSVWriter csvWriter = new CSVWriter(new FileWriter("Price Pull_" + todayWithZeroTime.toString() + ".csv"));
                 csvWriter.writeAll(rs, true);
                 System.out.println("Finished");
+
             }
         }
         // Handle any errors that may have occurred.
@@ -62,6 +61,6 @@ public class Controller {
     }
     @FXML
     public void pullItemsFromDB(ActionEvent e){
-        TextArea textArea =
+
     }
 }
