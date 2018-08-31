@@ -70,7 +70,6 @@ public class Controller extends Component {
                 CSVWriter csvWriter = new CSVWriter(new FileWriter(showSaveFileDialog()));
                 csvWriter.writeAll(rs, true);
                 System.out.println("Finished");
-
             }
         }
         // Handle any errors that may have occurred.
@@ -80,8 +79,13 @@ public class Controller extends Component {
             e.printStackTrace();
         }
     }
+    //TODO: Get textarea object from ID
+    @FXML
+    private TextArea prodcodeTestBox = (TextArea) Main.getStage().getTitle();
+
     @FXML
     public void pullItemsFromDB(ActionEvent e){
-
+        System.out.println(prodcodeTestBox.getText());
     }
+
 }

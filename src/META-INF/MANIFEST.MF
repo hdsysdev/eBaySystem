@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: C:\Users\hubert\IdeaProjects\eBaySystem\out\production\eBa
+ ySystem\sample
+Main-Class: sample.Main
+
