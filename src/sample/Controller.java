@@ -3,12 +3,32 @@ package sample;
 import com.opencsv.CSVWriter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.io.*;
 import java.sql.*;
 
-public class Controller {
+public class Controller extends Component {
+    private File fileToSave;
+
+    private String showSaveFileDialog() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV Spreadsheet (*.csv)", "csv");
+        fileChooser.setFileFilter(filter);
+
+        int userSelection = fileChooser.showSaveDialog(this);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            fileToSave = fileChooser.getSelectedFile();
+            System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+            return fileToSave.toString() + ".csv";
+        }
+        else
+            return null;
+    }
 
     @FXML
     public void importNewPrices(ActionEvent event) throws FileNotFoundException  {
@@ -46,7 +66,8 @@ public class Controller {
             Date todayWithZeroTime = new java.sql.Date(System.currentTimeMillis());
             // Iterate through the data in the result set and display it.
             while (rs.next()) {
-                CSVWriter csvWriter = new CSVWriter(new FileWriter("Price Pull_" + todayWithZeroTime.toString() + ".csv"));
+
+                CSVWriter csvWriter = new CSVWriter(new FileWriter(showSaveFileDialog()));
                 csvWriter.writeAll(rs, true);
                 System.out.println("Finished");
 
