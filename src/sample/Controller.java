@@ -7,8 +7,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -98,7 +96,14 @@ public class Controller  {
     @FXML
     public void pullItemsFromDB(ActionEvent e){
         ArrayList<String> productList = new ArrayList<>(Arrays.asList(textfield.getText().split("\\s*,\\s*")));
-
+        String appendedProducts = "";
+        for(String product: productList){
+            if(productList.indexOf(product) == productList.size() - 1){
+                appendedProducts = appendedProducts + "\'" + product + "\'";
+            } else {
+                appendedProducts = appendedProducts + "\'" + product + "\',";
+            }
+        }
         String connectionUrl = "jdbc:sqlserver://DESIGNER1:1433;databaseName=INTRANET;user=intranet;password=bathcountry110";
 
         String SQL = "";
@@ -123,11 +128,12 @@ public class Controller  {
                 sqlQuery = sqlQuery + " " + thisLine;
                 //If one command complete
                 if(sqlQuery.charAt(sqlQuery.length() - 1) == ';') {
-                    sqlQuery = sqlQuery.replace(';' , ' '); //Remove the ; since jdbc complains
+                    //Remove the ; since jdbc complains
+                    sqlQuery = sqlQuery.replace(';' , ' ');
                 }
             }
             SQL = sqlQuery;
-            SQL = SQL.replace("MY NAME JEFF", textfield.getText());
+            SQL = SQL.replace("MY NAME JEFF", appendedProducts);
         }
         catch(IOException ex) {
 
@@ -137,17 +143,18 @@ public class Controller  {
             ResultSet rs = stmt.executeQuery(SQL);
 
             // Iterate through the data in the result set and display it.
+            System.out.println(rs.toString());
             while (rs.next()) {
-
-                CSVWriter csvWriter = new CSVWriter(new FileWriter(showSaveFileDialog()));
-                csvWriter.writeAll(rs, true);
-                System.out.println("Finished");
-                listview.getItems().add(rs.getString("prodcode"));
+//                CSVWriter csvWriter = new CSVWriter(new FileWriter(showSaveFileDialog()));
+//                csvWriter.writeAll(rs, true);
+                System.out.println(rs.getNString("prodcode"));
+                listview.getItems().add(rs.getNString("prodcode"));
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
         }
+//        catch (IOException e1) {
+//            e1.printStackTrace();
+//        }
     }
 }

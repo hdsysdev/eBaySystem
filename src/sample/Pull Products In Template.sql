@@ -379,5 +379,5 @@ JOIN categories c1 ON prod_parent.prod_parent_new_cat = c1.CatID
 INNER JOIN categories c2 ON c1.ParentID = c2.CatID
 FULL JOIN prod_child ON prod_parent.parentid = prod_child.child_parentid
 FULL JOIN [intranet-test].[dbo].[ebayTable] ebay ON prod_child.childid = ebay.eChildID
-WHERE eStatus='LIVE' AND prod_parent.prodcode = 'MY NAME JEFF'
+WHERE prod_parent.prodcode IN(MY NAME JEFF)
 ORDER BY ebay.SKU;

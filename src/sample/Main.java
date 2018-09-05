@@ -22,8 +22,6 @@ public class Main extends Application {
         stage.setScene(new Scene(root, 300, 275));
         stage.show();
 
-
-
         TextField textField = new TextField("jeff");
 
         primaryStage.show();

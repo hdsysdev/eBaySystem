@@ -10,17 +10,30 @@
 <?import javafx.scene.control.Label?>
 
 <GridPane alignment="center" hgap="10.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-    
-
    <children>
       <TextField fx:id="textfield" alignment="TOP_LEFT" prefHeight="200.0" prefWidth="200.0" promptText="Enter prodcodes to extract..." GridPane.rowIndex="1" />
        <Button id="importpricesbutt" mnemonicParsing="false" onAction="#importNewPrices" prefHeight="25.0" prefWidth="200.0" text="Import New Prices" GridPane.columnIndex="1" />
       <Button id="pullFromDB" fx:id="pullfromdb" mnemonicParsing="false" onAction="#pullItemsFromDB" prefHeight="25.0" prefWidth="200.0" text="Pull Below Items From DB" />
       <ListView id="listview" fx:id="listview" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <ProgressBar prefHeight="11.0" prefWidth="410.0" progress="0.0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+      <TableView fx:id="tableview" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Prodcode" />
+          <TableColumn prefWidth="125.0" text="Title" />
+        </columns>
+      </TableView>
    </children>
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
+      <ColumnConstraints />
    </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>
