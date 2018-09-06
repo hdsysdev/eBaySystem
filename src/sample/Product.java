@@ -30,6 +30,15 @@ public class Product {
     private String deliveryName3;
     private Float deliveryPrice3;
     private String tag;
+    private Integer EAN;
+
+    public Integer getEAN() {
+        return EAN;
+    }
+
+    public void setEAN(Integer EAN) {
+        this.EAN = EAN;
+    }
 
     public Product(String prodcode, String SKU, String title, Float BIN, Float RRP, String description) {
         this.prodcode = prodcode;
@@ -44,7 +53,7 @@ public class Product {
                    String image1, String image2, String image3, String image4, String image5, String image6,
                    String image7, String image8, String image9, String image10, String image11, String image12, Integer QTY,
                    String deliveryName1, Float deliveryPrice1, Float deliveryAddPrice1, String deliveryName2, Float deliveryPrice2,
-                   Float deliveryAddPrice2, String deliveryName3, Float deliveryPrice3, String tag) {
+                   Float deliveryAddPrice2, String deliveryName3, Float deliveryPrice3, String tag, Integer EAN) {
         this.prodcode = prodcode;
         this.category = category;
         this.SKU = SKU;
@@ -74,6 +83,7 @@ public class Product {
         this.deliveryName3 = deliveryName3;
         this.deliveryPrice3 = deliveryPrice3;
         this.tag = tag;
+        this.EAN = EAN;
     }
 
     public Product() {

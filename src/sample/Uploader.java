@@ -1,12 +1,7 @@
 package sample;
 
 import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 
 import java.io.*;
 import java.sql.*;
@@ -69,7 +64,8 @@ public class Uploader extends Controller {
                 prod.setImage11(record[14]);
                 prod.setImage12(record[15]);
                 prod.setDescription(record[16]);
-
+                prod.setEAN(Integer.getInteger(record[17]));
+                prod.
             }
 
             System.out.println(prodList);
