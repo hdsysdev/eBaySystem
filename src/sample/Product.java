@@ -76,6 +76,9 @@ public class Product {
         this.tag = tag;
     }
 
+    public Product() {
+    }
+
     public String getProdcode() {
         return prodcode;
     }

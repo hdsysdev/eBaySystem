@@ -5,8 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -25,7 +24,16 @@ public class Controller  {
     @FXML
     private TextField textfield;
 
-    private String showSaveFileDialog() {
+    @FXML
+    public Button uploadButton;
+
+    @FXML
+    public ComboBox comboBox;
+
+    @FXML
+    public Label uploadLoc;
+
+    public String showSaveFileDialog() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Specify a file to save");
 
@@ -40,6 +48,11 @@ public class Controller  {
         }
         else
             return null;
+    }
+
+    @FXML
+    public void uploadItems(ActionEvent e){
+        Uploader uploader = new Uploader();
     }
 
     @FXML
@@ -89,10 +102,12 @@ public class Controller  {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NullPointerException e){
+            e.printStackTrace();
         }
 
     }
-    //TODO: Get textarea object from ID
+
     @FXML
     public void pullItemsFromDB(ActionEvent e){
         ArrayList<String> productList = new ArrayList<>(Arrays.asList(textfield.getText().split("\\s*,\\s*")));
@@ -143,18 +158,18 @@ public class Controller  {
             ResultSet rs = stmt.executeQuery(SQL);
 
             // Iterate through the data in the result set and display it.
-            System.out.println(rs.toString());
             while (rs.next()) {
-//                CSVWriter csvWriter = new CSVWriter(new FileWriter(showSaveFileDialog()));
-//                csvWriter.writeAll(rs, true);
                 System.out.println(rs.getNString("prodcode"));
                 listview.getItems().add(rs.getNString("prodcode"));
             }
+            CSVWriter csvWriter = new CSVWriter(new FileWriter(showSaveFileDialog()));
+            csvWriter.writeAll(rs, true);
+
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
-//        catch (IOException e1) {
-//            e1.printStackTrace();
-//        }
+        catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 }
